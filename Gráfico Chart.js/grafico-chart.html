@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart JS - Vitória</title>
+    <!-- link para o código ChartsJS - Versão 3.1.0 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Stilo dos gráficos */
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        h1 {
+            margin: auto;
+            padding-top: 5%;
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .grafico_line {
+            width: 50%;
+            float: left;
+            padding-top: 15%;
+        }
+
+        .grafico_pie {
+            width: 50%;
+            float: right;
+            padding-top: 5%;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gráficos Chart JS</h1>
+        <div class="grafico_line">
+            <!-- O gráfico será gerado aqui -->
+            <canvas id="myChart_line"></canvas>
+        </div>
+        <div class="grafico_pie">
+            <!-- O gráfico será gerado aqui -->
+            <canvas id="myChart_pie"></canvas>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    // Criando a variável pie_line e informando onde será a visualização do gráfico(myChart_line).
+    var grafico_line = document.getElementById('myChart_line')
+
+    // Criando a variável 'grafico' e informando o contexto.
+    var grafico = new Chart(grafico_line, {
+
+        //Tipo do gráfico, qual formato? No caso é linha
+        type: 'line',
+        data: {
+            // Mês representados no gráfico.
+            // mas nesse campo poderia se colocar outros parâmetros. 
+            labels: ["jan", "fev", "mar", "abr", "mai", "jun", "ago", "set", "out", "nov", "dez"],
+            datasets: [
+                {
+                    // Descrição do gráfico
+                    label: "Preço do arroz 2020",
+                    // Dados que serão representados.
+                    data: [20, 15, 25, 15, 30, 20, 40, 35, 25, 35, 25],
+                    // Expessura da linha.
+                    borderWidth: 3,
+                    // Cor da linha
+                    borderColor: '#009432',
+                    // Cor de 'fundo' dos dados da legenda.
+                    backgroundColor: '#778ca3',
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    // Posicionamento da "caixa de legenda"
+                    position: 'top',
+                },
+                title: {
+                    // Visibilidade do título
+                    display: true,
+                    // Texto do título do gráfico
+                    text: "Preço do arroz no Brasil em 2020",
+                    // Posição do título
+                    position: 'left',
+                }
+            },
+        },
+    })
+    // Criando variável "grafico_pie" e informando onde será a visualização do gráfico(myChart_pie).
+    var grafico_pie = document.getElementById('myChart_pie')
+    // Criando a variável 'pie' e informando o contexto.
+    var pie = new Chart(grafico_pie, {
+        // TIPO: Tipo do gráfico, tipo pie, mais conhecido como gráfico de pizza.
+        type: 'pie',
+        // DADOS: Inserindo os dados no gráfico
+        data: {
+            labels: ["Faculdade", "Renião", "Estudar", "Dormir", "Necessidades básicas e lazer"], // LABELS: Conjunto de dados - LEGENDA DOS DADOS.
+            datasets: [{
+                data: [6, 1, 4, 9, 4], // DATA: Valores dos dados, aqui você escolhe quantas partes terá e o tamanho.
+                backgroundColor: ['#3867d6', '#fed330', '#eb3b5a', '#a55eea', '#2bcbba'], // Aqui você decidi qual cor colocar em cada parte, mas um detalhe
+                // tem que colocar na proporção de valores inseridos, ou seja, cada valor é uma cor.
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { // LEGENDA : Dados da leganda.
+                    position: 'bottom', // Leganda possionada embaixo.
+                    display: true, // Deixando a legenda visível.
+                },
+                title: { // TÍTULO : Dados do título.
+                    display: true, // Deixando a título visível.
+                    text: "Minhas 24h" // Deixando o título visível.
+                }
+            }
+        }
+    })
+
+</script>
